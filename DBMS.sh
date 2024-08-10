@@ -1,4 +1,12 @@
 #!/bin/bash
+#sourcing functions 
+. list-db
+
+#create Database directory
+DBs=Databases
+mkdir $DBs
+
+
 # function to display menu
 menu(){
 echo "pick your choice: "
