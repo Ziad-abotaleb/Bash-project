@@ -3,7 +3,7 @@
 . list-db
 
 #create Database directory
-DBs=Databases
+DBs="Databases"
 mkdir $DBs
 
 
