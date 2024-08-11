@@ -2,6 +2,7 @@
 #sourcing functions 
 . list-db
 source drop-db
+. create-db
 #create Database directory
 DBs="Databases"
 mkdir $DBs
