@@ -1,0 +1,15 @@
+#!/bin/bash
+drop-db() {
+    read -p "Enter the database name you want to remove: " var
+   
+    dp_path="$DBs/$var"
+    
+    if [ -d "$dp_path" ]; then
+        rm -r "$dp_path"
+        echo "$var has been removed."
+    else
+        echo "Database name not found."
+    fi
+menu
+}
+

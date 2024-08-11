@@ -1,7 +1,7 @@
 #!/bin/bash
 #sourcing functions 
 . list-db
-
+source drop-db
 #create Database directory
 DBs="Databases"
 mkdir $DBs
