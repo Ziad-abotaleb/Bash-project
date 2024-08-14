@@ -3,6 +3,7 @@
 . list-db
 source drop-db
 . create-db
+source connect-db
 #create Database directory
 DBs="Databases"
 mkdir $DBs
