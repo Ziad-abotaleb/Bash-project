@@ -1,16 +1,17 @@
 #!/bin/bash
 . DBmenu
 
-connect-db()
-{
-read -p "enter database name you want to connect: " DBN
-DB_path="$DBs/$DBN"
-if [ -d "$DB_path" ]; then
-         cd "$DB_path"
-         echo "connected to $DBN "
-         DBmenu
+connect-db() {
+    read -p "Enter the database name you want to connect to: " DBN
+    DB_path="$DBs/$DBN"
+    
+    if [ -d "$DB_path" ]; then
+        cd "$DB_path"
+        echo "Connected to $DBN"
+        DBmenu
 else
-         echo "database name doesn't exist"
-fi
+        echo "Database name doesn't exist"
+    fi
 }
+
 

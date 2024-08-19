@@ -4,7 +4,7 @@ create-db()
 {
 read -p "enter the name of database :" name
 db_path="$DBs/$name"
-if [ -d "$db_path"]; then
+if [ -d "$db_path" ] || [ -z "$name" ] ; then
 	echo "database $name already exists"
 else
 	mkdir -p "$db_path"
