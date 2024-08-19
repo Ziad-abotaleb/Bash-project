@@ -1,0 +1,12 @@
+#!/bin/bash
+drop-table(){
+read -p "enter table name you want to drop : " dropped
+if [ -f $dropped ]; then 
+rm $dropped
+echo "$dropped table removed successfully"
+else 
+echo " table $dropped does not exist "
+fi
+DBmenu
+
+}
