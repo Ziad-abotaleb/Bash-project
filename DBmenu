@@ -1,5 +1,6 @@
 #!/bin/bash 
 source create-table
+. list-tables
 DBmenu()
 {
 echo "1- create table "

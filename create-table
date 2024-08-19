@@ -20,7 +20,10 @@ create-table () {
     done
 
     touch "$tablename"
+
     echo "Table $tablename created successfully."
+DBmenu
 }
+
 
 
