@@ -1,0 +1,26 @@
+#!/bin/bash
+
+create-table () {
+    read -p "Enter table name: " tablename
+    if [ -f "$tablename" ]; then
+        echo "Table $tablename already exists."
+        return
+    fi
+
+    read -p "Enter number of columns: " column_n
+    cl_names=()
+    cl_datatypes=()
+
+    for ((i=1; i<=column_n; i++))
+    do
+        read -p "Enter column $i name: " column_name
+        cl_names+=("$column_name")
+        read -p "Enter data type (int, string): " dt
+        cl_datatypes+=("$dt")
+    done
+
+    touch "$tablename"
+    echo "Table $tablename created successfully."
+}
+
+
