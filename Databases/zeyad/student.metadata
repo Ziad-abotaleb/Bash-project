@@ -1,0 +1,6 @@
+Table: student
+columns:
+name
+id
+age
+class

@@ -1,32 +1,48 @@
 #!/bin/bash
 
-create-table () {
+create-table () 
+{
+
     read -p "Enter table name: " tablename
     if [ -f "$tablename" ]; then
         echo "Table $tablename already exists."
-        return
-    fi
-
+else
+    touch "$tablename"
+    fi 
+    metadata="$tablename.metadata"
+ touch "$metadata"
     read -p "Enter number of columns: " column_n
-    cl_names=()
-    cl_datatypes=()
-
+if [[ "$column_n" != [1-9] ]] || [ "$coulmn_n" -le 0 ]; then
+	echo "invalid number of columns"
+	return 
+fi
+echo "Table: $tablename" > "$metadata"
+echo "columns:" >> "$metadata"
+columns=()
     for ((i=1; i<=column_n; i++))
     do
         read -p "Enter column $i name: " column_name
-        cl_names+=("$column_name")
-        read -p "Enter data type for $column_name (int, string): " dt
-        cl_datatypes+=("$dt")
-    done
+        if [ -z "$column_name" ]; then 
+		echo "column name can not be empty"
+		return
+	fi
+	columns+=("$column_name")
+	echo "$column_name" >> "$metadata"
+done
 
-   
-    echo "${cl_names[*]}" > "$tablename"
-    echo "${cl_datatypes[*]}" >> "$tablename"
-
-    echo "Table $tablename created successfully with columns: ${cl_names[*]}"
-
-    DBmenu
+#create table header using the column name that the user enters
+header="+"
+header_line="|"
+for column in "${columns[@]}"
+do
+	header+=$(printf '%-s+' "---------")
+	header_line+=$(printf '%-s |' "$column")
+done
+echo "table '$tablename' created successfully in database '$DBN'"
+DBmenu
 }
+
+
 
 
 
