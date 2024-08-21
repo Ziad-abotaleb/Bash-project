@@ -8,7 +8,7 @@ connect-db() {
     if [ -d "$DB_path" ]; then
         cd "$DB_path"
         echo "Connected to $DBN"
-        DBmenu
+	DBmenu
 else
         echo "Database name doesn't exist"
     fi

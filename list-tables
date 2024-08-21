@@ -2,7 +2,7 @@
 list-tables() {
 
 echo "current tables : " 
-ls
+ls | grep -v "metadata" | grep -v "monitor_file"
 DBmenu
 }
 

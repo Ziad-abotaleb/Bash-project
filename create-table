@@ -38,6 +38,24 @@ do
 	header+=$(printf '%-s+' "---------")
 	header_line+=$(printf '%-s |' "$column")
 done
+
+touch monitor_file
+awk -F, -v header="$header" -v header_line="$header_line" 'BEGIN {
+print header;
+print header_line
+}
+{
+row="|";
+for (i=1; i<=NF; i++) {
+	row = row sprintf(" %-s |", $i);
+    }
+    print row;
+}
+END {
+	print header;
+}' monitor_file>"$tablename"
+echo "formated table saved to $tablename"
+
 echo "table '$tablename' created successfully in database '$DBN'"
 DBmenu
 }

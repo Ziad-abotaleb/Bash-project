@@ -1,8 +1,9 @@
 #!/bin/bash
 drop-table(){
 read -p "enter table name you want to drop : " dropped
-if [ -f $dropped ]; then 
-rm $dropped
+if [[ -e $dropped ]]; then
+rm -rf $dropped
+rm -rf $dropped.metadata
 echo "$dropped table removed successfully"
 else 
 echo " table $dropped does not exist "
