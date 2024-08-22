@@ -59,8 +59,3 @@ echo "formated table saved to $tablename"
 echo "table '$tablename' created successfully in database '$DBN'"
 DBmenu
 }
-
-
-
-
-

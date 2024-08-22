@@ -1,0 +1,49 @@
+#!/bin/bash
+insert()
+{
+
+read -p " enter the table name : " tablename
+if [ ! -f $tablename ]; then
+        echo "Table '$tablename' does not exist"
+        DBmenu
+    fi
+metadata="$tablename.metadata"
+    columns=($(tail -n +3 "$metadata"))
+    values=()
+   
+    for column in "${columns[@]}"; do
+     while true  ; do
+        read -p "Enter value for column '$column': " value
+        if [ -z "$value" ]; then
+            echo "Value for column '$column' cannot be empty."
+            return 1
+        fi
+        if [[ ${#value} -gt 15 ]] ; then 
+        echo "invalid input please try less than 16 character"       
+        continue 
+        fi
+        if [[ $column == "id" ]] && ! [[ $value =~ ^[0-9]+$ ]]   ; then
+        echo "enter integer numbers only in (id) column  please"
+        continue 
+        fi
+        if [[ $column == "name" ]] && ! [[ $value =~ ^[a-zA-Z]+$ ]]   ; then
+        echo "enter string characters only in (name) column please"
+        continue 
+        fi
+      
+           values+=("$value")
+        break
+        done
+    done
+    data_row="|"
+    for value in "${values[@]}"; do
+        data_row+=$(printf ' %-10s |' "$value")
+    done
+
+    if [ ! -f "$tablename" ]; then
+        touch "$tablename"
+    fi
+    echo "$data_row" >> "$tablename"
+    echo "insert successfully into table $tablename "
+    DBmenu
+}
