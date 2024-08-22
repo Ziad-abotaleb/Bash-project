@@ -4,6 +4,7 @@ source create-table
 source drop-table
 . insert
 source select-table
+source delete-table
 DBmenu()
 {
 echo "1- create table "

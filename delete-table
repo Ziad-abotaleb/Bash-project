@@ -1,0 +1,62 @@
+#!/bin/bash
+delete-table() {
+    read -p " enter the table name : " table_name
+
+    if [ ! -f "$table_name" ]; then
+        echo "Table '$table_name' does not exist in database ."
+        return 1
+    fi
+
+    metadata="$table_name.metadata"
+    columns=($(tail -n +3 "$metadata"))
+
+    echo "Available columns:"
+    for col in "${columns[@]}"; do
+        echo "$col"
+    done
+
+    read -p "Enter the column name you want to delete: " column_name
+
+   
+    if [[ ! " ${columns[@]} " =~ " $column_name " ]]; then
+        echo "Invalid column name."
+        return 1
+    fi
+
+    read -p "Enter the value you want to delete: " value
+
+    temp_file=$(mktemp)
+
+ 
+    awk -F '|' -v col="$column_name" -v val="$value" -v columns="${columns[*]}" '
+    BEGIN {
+        split(columns, col_array, " ")
+        for (i in col_array) {
+            if (col_array[i] == col) {
+                target_col = i + 1
+                break
+            }
+        }
+    }
+    {
+        if ($target_col !~ val) {
+            print $0 > FILENAME".temp"
+        } else {
+            deleted=1
+        }
+    }
+    END {
+        if (deleted) {
+            print "Row deleted successfully."
+        } else {
+            print "No matching row found."
+        }
+    }' "$table_name"
+
+    # Replace the original file with the updated file if a row was deleted
+    if [ -f "$table_name.temp" ]; then
+        mv "$table_name.temp" "$table_name"
+    fi
+DBmenu
+}
+
