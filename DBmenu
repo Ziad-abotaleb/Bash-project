@@ -3,6 +3,7 @@ source create-table
 . list-tables
 source drop-table
 . insert
+source select-table
 DBmenu()
 {
 echo "1- create table "
@@ -16,7 +17,7 @@ echo "8- back to menu"
 read -p "enter your choice : " ch
 case $ch in 
          "1")create-table;;
-	 "2")list-table;;
+	 "2")list-tables;;
 	 "3")drop-table;;
 	 "4")insert;;
 	 "5")select-table;;

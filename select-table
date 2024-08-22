@@ -1,0 +1,45 @@
+#!/bin/bash
+select-table()
+{
+    read -p " enter the table name : " table_name
+
+    
+    if [ ! -f "$table_name" ]; then
+        echo "Table '$table_name' does not exist in database . "
+        return 1
+    fi
+
+  
+    metadata="$table_name.metadata"
+ 
+
+    header="+"
+    header_line="|"
+    for col in "${columns[@]}"; do
+        header+=$(printf '%-15s+' "------------")
+        header_line+=$(printf ' %-10s |' "$col")
+    done
+    
+    echo "--------------------------------------------"
+    if [ ! -f "$table_name" ]; then
+        echo "Table '$table_name' is empty."
+        return 1
+    fi
+
+    awk -F '|' -v header="$header" -v columns="${columns[*]}" '
+    BEGIN {
+        split(columns, col_array, " ")
+    }
+    {
+        row="|"
+        for (i=2; i<=NF-1; i++) {
+            row =row sprintf(" %-11s |", $i)
+        }
+        print row
+    }
+    END {
+        print header
+    }' "$table_name"
+}
+
+
