@@ -1,29 +1,46 @@
-#!/bin/bash 
-source create-table
-. list-tables
-source drop-table
-. insert
-source select-table
-source delete-table
-DBmenu()
-{
-echo "1- create table "
-echo "2- list tables"
-echo "3- drop table"
-echo "4- insert into tables"
-echo "5- select table"
-echo "6- delete from table"
-echo "7- update table"
-echo "8- back to menu"
-read -p "enter your choice : " ch
-case $ch in 
-         "1")create-table;;
-	 "2")list-tables;;
-	 "3")drop-table;;
-	 "4")insert;;
-	 "5")select-table;;
-	 "6")delete-table;;
-	 "7")update-table;;
+#!/bin/bash
+
+# Sourcing functions
+source create-table.sh
+source list-tables.sh
+source drop-table.sh
+source insert.sh
+source select-table.sh
+source delete-table.sh
+
+# Function to display the database table management menu
+DBmenu() {
+    clear
+    echo "=========================="
+    echo "  Database Table Management"
+    echo "=========================="
+    echo "1 - Create Table"
+    echo "2 - List Tables"
+    echo "3 - Drop Table"
+    echo "4 - Insert into Table"
+    echo "5 - Select from Table"
+    echo "6 - Delete from Table"
+    echo "7 - Update Table"
+    echo "8 - Back to Main Menu"
+    echo "=========================="
+    
+    read -p "Enter your choice [1-8]: " ch
+    case "$ch" in 
+        1) create-table ;;
+        2) list-tables ;;
+        3) drop-table ;;
+        4) insert ;;
+        5) select-table ;;
+        6) delete-table ;;
+        7) update-table ;;
+        8) menu ;;
+        *) echo "Invalid choice. Please try again."; DBmenu ;;
+    esac
+}
+
+# Invoke the DBmenu function
+DBmenu
+
 	 "8")menu;;
 	 *) echo "try again";;
 esac
