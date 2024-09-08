@@ -1,12 +1,12 @@
 #!/bin/bash
 
 # Sourcing functions
-source create-table.sh
-source list-tables.sh
-source drop-table.sh
-source insert.sh
-source select-table.sh
-source delete-table.sh
+source create-table
+source list-tables
+source drop-table
+source insert
+source select-table
+source delete-table
 
 # Function to display the database table management menu
 DBmenu() {
