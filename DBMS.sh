@@ -1,10 +1,10 @@
 #!/bin/bash
 
 # Sourcing functions
-source list-db.sh
-source drop-db.sh
-source create-db.sh
-source connect-db.sh
+source list-db
+source drop-db
+source create-db
+source connect-db
 
 # Create the Database directory if it doesn't exist
 DBs="Databases"
