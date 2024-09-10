@@ -12,7 +12,7 @@ mkdir -p "$DBs"
 
 # Function to display the menu
 menu() {
-    clear
+   # clear
     echo "=========================="
     echo "   Database Management"
     echo "=========================="

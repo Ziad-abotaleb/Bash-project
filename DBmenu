@@ -10,7 +10,7 @@ source delete-table
 
 # Function to display the database table management menu
 DBmenu() {
-    clear
+   # clear
     echo "=========================="
     echo "  Database Table Management"
     echo "=========================="
@@ -39,9 +39,9 @@ DBmenu() {
 }
 
 # Invoke the DBmenu function
-DBmenu
-
-	 "8")menu;;
-	 *) echo "try again";;
-esac
-}
+#DBmenu
+#
+#	 "8")menu;;
+#	 *) echo "try again";;
+#esac
+#}
